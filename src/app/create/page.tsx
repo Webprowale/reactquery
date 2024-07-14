@@ -1,0 +1,22 @@
+"use client";
+
+import BackButton from '@/Components/BackButton';
+import FormPost from '@/Components/FormPost'
+import { FormInput } from '@/Types'
+import React from 'react'
+import { SubmitHandler } from 'react-hook-form'
+
+const Create = () => {
+    const handlePost:SubmitHandler<FormInput> = (data)=>{
+    console.log(data);
+    }
+  return (
+    <div className='container'>
+      <BackButton />
+     <h3 className='text-medium font-serif font-semibold text-blue-600 mb-12'>Add New Post</h3>
+     <FormPost submit={handlePost} isEditing={false} />
+    </div>
+  )
+}
+
+export default Create
