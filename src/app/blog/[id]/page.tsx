@@ -1,15 +1,40 @@
 "use client";
 import BackButton from "@/Components/BackButton";
 import ButtonAction from "@/Components/ButtonAction";
-import React from "react";
+import { db } from "@/lib/db";
+import React, { FC } from "react";
 
-const BlogDetail = () => {
+interface blogDetaiprops{
+  params:{
+    id: string
+  }
+}
+const getDetails = async (id: string) => {
+  const res = await db.post.findFirst({
+    where: {
+      id: id,
+    },
+    select: {
+      title: true,
+      content: true,
+      createdAt: true,
+      tag: true,
+    },
+  });
+  return res;
+};
+const BlogDetail: FC<blogDetaiprops> = async ({params}) => {
+  const post = await getDetails(params.id);
+  
   return (
     <div className="mb-8">
       <BackButton />
-      <h2 className="text-2xl font-bold my-4">Post One</h2>
-      <ButtonAction />
-      <p className="text-slate-700">Post One Content</p>
+      <ButtonAction  />
+
+      <h2 className="text-2xl font-bold my-4">{post?.title}</h2>
+      <p className="text-slate-700">{post?.content}</p>
+      <span className="badge">{post?.tag.name}</span>
+      <p className="text-gray-500">{post?.createdAt?.toLocaleString()}</p>
     </div>
   );
 };

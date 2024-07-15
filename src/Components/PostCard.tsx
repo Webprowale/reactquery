@@ -10,7 +10,7 @@ import React, { FC } from "react";
   }
  }
 const PostCard: FC<getPostProps> = ({post}) => {
-  const { title, content,tag} = post;
+  const {id, title, content,tag} = post;
   return (
     <div className="card bg-base-100 w-full shadow-xl border">
       <div className="card-body">
@@ -18,7 +18,7 @@ const PostCard: FC<getPostProps> = ({post}) => {
         <p>{content}</p>
         <div className="card-actions justify-end">
         <span className="badge badge-neutral">{tag.name}</span>
-          <Link href='/blog/1' className="text-black">Read more..</Link>
+          <Link href={`/blog/${id}`} className="text-black">Read more..</Link>
         </div>
       </div>
     </div>
