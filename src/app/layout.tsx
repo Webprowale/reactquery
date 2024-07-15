@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navber from "@/Components/Navber";
+import Provider from "@/Components/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,10 +20,12 @@ export default function RootLayout({
     <html lang="en">
       
       <body className={inter.className}>
+        <Provider>
       <Navber />
       <div className="container h-full pt-10">
         {children}
         </div>
+        </Provider>
         </body>
     </html>
   );

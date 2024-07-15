@@ -13,7 +13,7 @@ const Create = () => {
   return (
     <div className='container'>
       <BackButton />
-     <h3 className='text-medium font-serif font-semibold text-blue-600 mb-12'>Add New Post</h3>
+     <h3 className='text-medium font-serif font-semibold text-blue-600 mb-12 text-center mt-3'>Add New Post</h3>
      <FormPost submit={handlePost} isEditing={false} />
     </div>
   )
