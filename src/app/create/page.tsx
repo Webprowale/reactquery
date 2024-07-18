@@ -5,16 +5,25 @@ import FormPost from '@/Components/FormPost'
 import { FormInput } from '@/Types'
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import React from 'react'
+import { useRouter } from 'next/router';
+import React, { useRef } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 
 const Create = () => {
+  const router = useRouter();
     const handlePost:SubmitHandler<FormInput> = (data)=>{
     createPost(data);
     }
-    const {mutate:createPost,  } = useMutation({
+    const {mutate:createPost  } = useMutation({
       mutationFn:(newPost:FormInput)=>{
        return axios.post('/api/posts/create', newPost)
+       
+      },
+      onError:(e)=>{
+        console.error(e);
+      },
+      onSuccess:()=>{
+        router.push('/');
       }
     })
   return (
