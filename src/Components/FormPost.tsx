@@ -9,11 +9,14 @@ import { SubmitHandler, useForm } from "react-hook-form";
 interface FormPostProps {
   submit: SubmitHandler<FormInput>;
   isEditing: boolean;
+  initialValue?: FormInput;
 }
 
 
-const FormPost: FC<FormPostProps> = ({ submit, isEditing }) => {
-  const { register, handleSubmit } = useForm<FormInput>();
+const FormPost: FC<FormPostProps> = ({ submit, isEditing, initialValue }) => {
+  const { register, handleSubmit } = useForm<FormInput>({
+    defaultValues:initialValue
+  });
   //fetch tags
   const { data: dataTags, isLoading: isLoadingTags } = useQuery<Tag[]>({
     queryKey: ["tags"],

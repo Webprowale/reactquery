@@ -7,6 +7,23 @@ interface ContextProps{
     }
 }
 
+export async function GET(req: Request, context:ContextProps){
+  try{
+    const { params } = context;
+    const postId = params.postid;
+    const response = await db.post.findFirst({
+      where:{
+        id:postId
+      }
+    
+    });
+    return NextResponse.json(response);
+  }catch(e){
+     return NextResponse.json({message:'post not found'},{status:404})
+  }
+
+}
+
 
 export async function DELETE(req: Request, context: ContextProps) {
     try {
