@@ -1,5 +1,4 @@
 "use client";
-
 import { FormInput } from "@/Types";
 import { Tag } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
@@ -12,6 +11,7 @@ interface FormPostProps {
   isEditing: boolean;
 }
 
+
 const FormPost: FC<FormPostProps> = ({ submit, isEditing }) => {
   const { register, handleSubmit } = useForm<FormInput>();
   //fetch tags
@@ -23,7 +23,9 @@ const FormPost: FC<FormPostProps> = ({ submit, isEditing }) => {
     },
   });
   console.log(dataTags);
-
+ 
+  
+ 
   return (
     <form
       onSubmit={handleSubmit(submit)}
@@ -42,7 +44,7 @@ const FormPost: FC<FormPostProps> = ({ submit, isEditing }) => {
       ></textarea>
       {isLoadingTags ? "loading..." : (
       <select
-        {...register("tag", { required: true })}
+        {...register("tagId", { required: true })}
         className="select select-bordered w-full max-w-lg"
       >
         <option disabled value="">

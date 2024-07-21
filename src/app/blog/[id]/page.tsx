@@ -1,4 +1,3 @@
-"use client";
 import BackButton from "@/Components/BackButton";
 import ButtonAction from "@/Components/ButtonAction";
 import { db } from "@/lib/db";
@@ -29,7 +28,8 @@ const BlogDetail: FC<blogDetaiprops> = async ({params}) => {
   return (
     <div className="mb-8">
       <BackButton />
-      <ButtonAction  />
+
+      <ButtonAction id={params.id} />
 
       <h2 className="text-2xl font-bold my-4">{post?.title}</h2>
       <p className="text-slate-700">{post?.content}</p>
