@@ -2,12 +2,6 @@ import { db } from '@/lib/db';
 import { NextRequest, NextResponse } from 'next/server';
 import { Prisma } from '@prisma/client';
 
-type Data = {
-    title: string;
-    content: string;
-    tagId: string;
-};
-
 export async function POST(req: NextRequest) {
     try {
         const data = await req.json();
@@ -25,11 +19,4 @@ export async function POST(req: NextRequest) {
     }
 }
 
-export function handle(req: NextRequest) {
-    if (req.method === 'POST') {
-        return POST(req);
-    } else {
-        return NextResponse.json({ message: 'Invalid Method' }, { status: 405 });
-    }
-}
 
